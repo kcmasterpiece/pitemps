@@ -5,6 +5,7 @@ from django.template.loader import render_to_string
 from django.test import TestCase
 from tempGraph.views import home_page
 from tempGraph.models import Readings
+from datetime import datetime
 # Create your tests here.
 
 class HomePageTest(TestCase):
@@ -24,5 +25,11 @@ class DataModelTest(TestCase):
 		saved_readings = Readings.objects.all()
 		self.assertEqual(saved_readings[0].temp,reading.temp)
 
-	def test_displays_correct_temperature(self):
-		currentTime = 1
+	def test_displays_current_temperature(self):
+		newReadingOne =  Readings.objects.create(temp=1)
+		newReadingTwo =  Readings.objects.create(temp=2)
+		newReadingThree =  Readings.objects.create(temp=3)
+		correctTemperature = newReadingThree.temp
+
+		response = self.client.get('/')
+		self.assertContains(response, correctTemperature)
