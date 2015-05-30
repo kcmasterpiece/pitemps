@@ -6,6 +6,8 @@ import time
 import atexit
 
 import pigpio
+
+from tempGraph.models import Readings
 class sensor:
    """
    A class to read relative humidity and temperature from the
@@ -162,7 +164,10 @@ class sensor:
                else:
 
                   self.bad_CS += 1
-               print int(str(self.valBits)[0:7],2), str(float(int(str(self.valBits)[18:25],2))*9/5+32) + "\xc2\xb0F", self.valBits
+
+               createReading(self.valBits)
+                  
+
          elif self.bit >=24: # in temp low byte
             self.tL = (self.tL<<1) + val
 
@@ -271,6 +276,12 @@ class sensor:
       if self.cb != None:
          self.cb.cancel()
          self.cb = None
+
+   def createReading(self, bitValue):
+      humidity = float(str(bitValue)[0:7],2)) 
+               temp = float(int(str(bitValue)[18:25],2))*9/5+32
+               reading = Readings.objects.create(temp=temp,humidity=humidty)
+               #print int(str(self.valBits)[0:7],2), str(float(int(str(self.valBits)[18:25],2))*9/5+32) + "\xc2\xb0F", self.valBits
 
 if __name__ == "__main__":
 
