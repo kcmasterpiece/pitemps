@@ -20,9 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = 'algiog0f83idu8x)hm+n5i5ogcf3xe@j=ow3r6p!_jctjra=@q'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-TEMPLATE_DEBUG = True
+TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -57,10 +57,15 @@ WSGI_APPLICATION = 'temps.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, '../database/db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'temps',
+        'USER': 'temps',
+        'PASSWORD': 'jQx$45rA2*HsHQ9bE',
+        'HOST': '192.168.1.112',
+        'PORT':'3306',
     }
 }
 
@@ -78,8 +83,13 @@ USE_L10N = True
 USE_TZ = True
 
 
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, '../static')
+
+
+if os.environ.get('DEVELOPMENT', None):
+    from settings_dev import *
