@@ -165,7 +165,7 @@ class sensor:
 
                   self.bad_CS += 1
 
-               createReading(self.valBits)
+               self.createReading(self.valBits)
                   
 
          elif self.bit >=24: # in temp low byte
@@ -278,9 +278,9 @@ class sensor:
          self.cb = None
 
    def createReading(self, bitValue):
-      humidity = float(str(bitValue)[0:7],2)
+      humidit = float(int(str(bitValue)[0:7],2))
       temp = float(int(str(bitValue)[18:25],2))*9/5+32
-      reading = Readings.objects.create(temp=temp,humidity=humidty)
+      reading = Readings.objects.create(temp=temp,humidity=humidit)
       #print int(str(self.valBits)[0:7],2), str(float(int(str(self.valBits)[18:25],2))*9/5+32) + "\xc2\xb0F", self.valBits
 
 if __name__ == "__main__":
