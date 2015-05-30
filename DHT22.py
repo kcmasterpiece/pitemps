@@ -278,10 +278,10 @@ class sensor:
          self.cb = None
 
    def createReading(self, bitValue):
-      humidity = float(str(bitValue)[0:7],2)) 
-               temp = float(int(str(bitValue)[18:25],2))*9/5+32
-               reading = Readings.objects.create(temp=temp,humidity=humidty)
-               #print int(str(self.valBits)[0:7],2), str(float(int(str(self.valBits)[18:25],2))*9/5+32) + "\xc2\xb0F", self.valBits
+      humidity = float(str(bitValue)[0:7],2)
+      temp = float(int(str(bitValue)[18:25],2))*9/5+32
+      reading = Readings.objects.create(temp=temp,humidity=humidty)
+      #print int(str(self.valBits)[0:7],2), str(float(int(str(self.valBits)[18:25],2))*9/5+32) + "\xc2\xb0F", self.valBits
 
 if __name__ == "__main__":
 
