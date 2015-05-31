@@ -292,7 +292,7 @@ if __name__ == "__main__":
    import DHT22
 
    # Intervals of about 2 seconds or less will eventually hang the DHT22.
-   INTERVAL=3
+   INTERVAL=180
 
    pi = pigpio.pi()
 
