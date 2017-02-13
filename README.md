@@ -9,5 +9,9 @@ Once everything is configured, running:
 
 `nohup DHT22.py` 
 
-makes regular writes to the database configured in django (I used mysql).
+makes regular writes to the database configured in django (I used mysql).  If the application server is running, the page will display the current temperature.  
+
+## Next Steps ##
+
+Build a graph-based front-end to display temperature history.
 
